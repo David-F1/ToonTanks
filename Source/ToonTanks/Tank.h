@@ -9,6 +9,12 @@
 /**
  * 
  */
+
+class UInputMappingContext;
+class UInputAction;
+struct FInputActionValue;
+
+
 UCLASS()
 class TOONTANKS_API ATank : public ABasePawn
 {
@@ -17,6 +23,30 @@ class TOONTANKS_API ATank : public ABasePawn
 	public:
 		ATank();
 
+		// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	protected:
+		// To add mapping context
+		virtual void BeginPlay();
+
+
+		UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		UInputAction* Forward;
+
+		UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		UInputAction* TurnAction;
+
+		UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		UInputAction* TurretRotate;
+
+		UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		UInputAction* Fire;
+
+
 	private:
 
 		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -24,5 +54,24 @@ class TOONTANKS_API ATank : public ABasePawn
 
 		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* Camera;
+
+		UPROPERTY(EditAnyWhere, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+		float Speed = 200.f;
+		UPROPERTY(EditAnyWhere, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+		float TurnRate = 45.f;
+
+
+		/** MappingContext */
+		UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		UInputMappingContext* DefaultMappingContext;
+
+
+		void Move(const FInputActionValue& Value);
+		void Turn(const FInputActionValue& Value);
+
+		APlayerController* PlayerControllerRef;
+	
+	
+
 	
 };
