@@ -32,6 +32,10 @@ class TOONTANKS_API ATower : public ABasePawn
 		UPROPERTY(EditAnywhere, Category = "Combat")
 		float TargetLength = 300;
 
+		FTimerHandle FireRateTimerHandle;
+		float FireRate = 2.f;
+		void CheckFireCondition();
 
+		bool InFireRange();
 
 };
