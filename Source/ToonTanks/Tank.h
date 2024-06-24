@@ -44,7 +44,7 @@ class TOONTANKS_API ATank : public ABasePawn
 		UInputAction* TurretRotate;
 
 		UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-		UInputAction* Fire;
+		UInputAction* FireAction;
 
 
 	private:
