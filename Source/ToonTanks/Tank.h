@@ -28,6 +28,10 @@ class TOONTANKS_API ATank : public ABasePawn
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	
+	void HandleDestruction();
+
+	APlayerController* GetTankPlayerController() const { return TankPlayerController; }
 
 	protected:
 		// To add mapping context
@@ -69,7 +73,7 @@ class TOONTANKS_API ATank : public ABasePawn
 		void Move(const FInputActionValue& Value);
 		void Turn(const FInputActionValue& Value);
 
-		APlayerController* PlayerControllerRef;
+		APlayerController* TankPlayerController;
 	
 	
 
