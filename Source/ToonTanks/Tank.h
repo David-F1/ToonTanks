@@ -76,6 +76,4 @@ class TOONTANKS_API ATank : public ABasePawn
 		APlayerController* TankPlayerController;
 	
 	
-
-	
 };
