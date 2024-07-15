@@ -21,6 +21,9 @@ protected:
 
 	virtual void BeginPlay();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartGame();
+
 private:
 
 	class ATank* Tank;
